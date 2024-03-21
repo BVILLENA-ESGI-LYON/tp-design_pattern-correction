@@ -1,0 +1,12 @@
+{
+    "name": "esgi-iw/tp-design-pattern",
+    "description": "TP pour les Design Patterns du cours ESGI LYON des B3 IW.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "EsgiIw\\TpDesignPattern\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}

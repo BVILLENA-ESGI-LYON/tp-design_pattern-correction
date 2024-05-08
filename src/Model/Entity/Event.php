@@ -16,6 +16,8 @@ class Event implements EventInterface
 
     protected \DateTime $date;
 
+    private array $changeSet = [];
+
     public function getId(): int
     {
         return $this->id;
@@ -24,6 +26,7 @@ class Event implements EventInterface
     public function setId(int $id): static
     {
         $this->id = $id;
+        $this->changeSet['id'] = true;
 
         return $this;
     }
@@ -36,6 +39,7 @@ class Event implements EventInterface
     public function setLabel(string $label): static
     {
         $this->label = $label;
+        $this->changeSet['label'] = true;
 
         return $this;
     }
@@ -48,6 +52,7 @@ class Event implements EventInterface
     public function setDescription(string $description): static
     {
         $this->description = $description;
+        $this->changeSet['description'] = true;
 
         return $this;
     }
@@ -60,7 +65,20 @@ class Event implements EventInterface
     public function setDate(\DateTime $date): static
     {
         $this->date = $date;
+        $this->changeSet['date'] = true;
 
         return $this;
+    }
+
+    public function hasChanged(?string $propertyName = null): bool
+    {
+        return $propertyName === null
+            ? count($this->changeSet) > 0
+            : array_key_exists(key: $propertyName, array: $this->changeSet);
+    }
+
+    public function resetChangeSet(): void
+    {
+        $this->changeSet = [];
     }
 }

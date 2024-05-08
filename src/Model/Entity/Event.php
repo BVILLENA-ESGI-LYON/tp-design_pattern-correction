@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace EsgiIw\TpDesignPattern\Model\Entity;
 
-class Event
+use EsgiIw\TpDesignPattern\Model\Decorator\Event\EventInterface;
+
+class Event implements EventInterface
 {
     protected int $id;
 

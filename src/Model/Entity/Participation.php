@@ -14,6 +14,8 @@ class Participation
 
     protected \DateTime $registrationAt;
 
+    protected bool $validated = false;
+
     public function getId(): int
     {
         return $this->id;
@@ -51,6 +53,18 @@ class Participation
     public function setRegistrationAt(\DateTime $registrationAt): static
     {
         $this->registrationAt = $registrationAt;
+
+        return $this;
+    }
+
+    public function isValidated(): bool
+    {
+        return $this->validated;
+    }
+
+    public function setValidated(bool $validated): static
+    {
+        $this->validated = $validated;
 
         return $this;
     }

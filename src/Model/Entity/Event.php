@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EsgiIw\TpDesignPattern\Model\Entity;
 
 use EsgiIw\TpDesignPattern\Model\Decorator\Event\EventInterface;
+use EsgiIw\TpDesignPattern\Model\Entity\Enum\Event\EventTypeEnum;
 
 class Event implements EventInterface
 {
@@ -15,6 +16,12 @@ class Event implements EventInterface
     protected string $description;
 
     protected \DateTime $date;
+
+    protected EventTypeEnum $type = EventTypeEnum::REGULAR;
+
+    protected ?int $remainingSeats = null;
+
+    protected ?int $remainingBdeReservedSeats = null;
 
     private array $changeSet = [];
 
@@ -66,6 +73,42 @@ class Event implements EventInterface
     {
         $this->date = $date;
         $this->changeSet['date'] = true;
+
+        return $this;
+    }
+
+    public function getType(): EventTypeEnum
+    {
+        return $this->type;
+    }
+
+    public function setType(EventTypeEnum $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getRemainingSeats(): ?int
+    {
+        return $this->remainingSeats;
+    }
+
+    public function setRemainingSeats(?int $remainingSeats): static
+    {
+        $this->remainingSeats = $remainingSeats;
+
+        return $this;
+    }
+
+    public function getRemainingBdeReservedSeats(): ?int
+    {
+        return $this->remainingBdeReservedSeats;
+    }
+
+    public function setRemainingBdeReservedSeats(?int $remainingBdeReservedSeats): static
+    {
+        $this->remainingBdeReservedSeats = $remainingBdeReservedSeats;
 
         return $this;
     }
